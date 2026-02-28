@@ -4,7 +4,10 @@ import dotenv from 'dotenv';
 type ServerConfig = {
     PORT: number
 }
-
+type DBconfig = {
+    DATABASE_URL: string,
+    DB_NAME: string
+}
 function loadEnv() {
     dotenv.config();
     console.log(`Environment variables loaded`);
@@ -14,4 +17,10 @@ loadEnv();
 
 export const serverConfig: ServerConfig = {
     PORT: Number(process.env.PORT) || 3001
+};
+
+
+export const dbConfig: DBconfig = {
+    DATABASE_URL: process.env.DATABASE_URL as string,
+    DB_NAME: process.env.DB_NAME as string
 };
