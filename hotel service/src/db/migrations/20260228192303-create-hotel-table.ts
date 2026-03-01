@@ -1,9 +1,12 @@
 "use strict";
+
+import { QueryInterface } from "sequelize";
+
 //up part is creating the hotels
 //down , if i revert theis migration then it will drop the hotels table
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface: QueryInterface) {
     await queryInterface.sequelize.query(`
   CREATE TABLE IF NOT EXISTS hotels(
   id SERIAL PRIMARY KEY,
@@ -15,7 +18,7 @@ module.exports = {
   );`);
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface: QueryInterface) {
     await queryInterface.sequelize.query(`
       DROP TABLE IF EXISTS hotels;`);
   },
