@@ -1,5 +1,4 @@
-const path = require('path');
-
+const path = require("path");
 
 // export default {
 //   seedersPath: path.resolve("./src/db/seeders"),
@@ -8,8 +7,8 @@ const path = require('path');
 //   config: path.resolve("./src/db/config/config.ts"),
 // };
 module.exports = {
- seedersPath: path.resolve("./src/db/seeders"),
+  seedersPath: path.resolve("./src/db/seeders"),
   modelsPath: path.resolve("./src/db/models"),
   migrationsPath: path.resolve("./src/db/migrations"),
-  config: path.resolve("./src/config/config.ts"),
+  config: path.resolve("./src/config/sequelize.config.js"),
 };
