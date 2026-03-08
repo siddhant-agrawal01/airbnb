@@ -6,8 +6,8 @@ class Hotel extends Model<InferAttributes<Hotel>, InferCreationAttributes<Hotel>
     declare name: string;
     declare address: string;
     declare location: string;
-    declare rating: number;
-    declare ratingCount: number;
+    declare rating?: number;
+    declare ratingCount?: number;
     declare createdAt: Date;
     declare updatedAt: Date;
 }
