@@ -1,8 +1,9 @@
+import logger from "../config/logger.config";
 import Hotel from "../db/models/hotel";
 import { createHotelDTO } from "../dto/hotel.dto";
 
- 
- export async function createHotel(hotelData:createHotelDTO){
+
+export async function createHotel(hotelData: createHotelDTO) {
     const hotel = await Hotel.create({
         name: hotelData.name,
         address: hotelData.address,
@@ -15,13 +16,44 @@ import { createHotelDTO } from "../dto/hotel.dto";
 
     console.log(`hotel created ${hotel.id}`);
     return hotel;
- }
-
- export async function getHotelById(id:number){
-    const hotel =await Hotel.findByPk(id)
-if(!hotel){
-    console.log(`hotel with id ${id} not found`);
-    throw new Error(`hotel with id ${id} not found`);
 }
+
+export async function getHotelById(id: number) {
+    const hotel = await Hotel.findByPk(id)
+    if (!hotel) {
+        console.log(`hotel with id ${id} not found`);
+        throw new Error(`hotel with id ${id} not found`);
+    }
     return hotel;
- }
+}
+
+
+export async function getAllHotels() {
+    const hotels = await Hotel.findAll({
+        where: {
+            deletedAt: null
+        }
+    });
+
+    if (!hotels) {
+        logger.error(`hotels not found`);
+        throw new Error(`hotels not found`);
+    }
+    logger.info(`hotels found ${hotels.length}`);
+    return hotels;
+}
+
+export async function softDeleteHotel(id: number) {
+    const hotel = await Hotel.findByPk(id);
+
+    if (!hotel) {
+        logger.error(`hotel with id ${id} not found`);
+        throw new Error(`hotel with id ${id} not found`);
+    }
+
+    hotel.deletedAt = new Date();
+    await hotel.save();
+    logger.info(`Hotel soft deleted ${hotel.id}`);
+    return true;
+
+}
