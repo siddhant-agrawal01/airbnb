@@ -1,4 +1,4 @@
-import { CreationOptional, InferAttributes, InferCreationAttributes, Model, Sequelize } from "sequelize";
+import { CreationOptional, InferAttributes, InferCreationAttributes, Model } from "sequelize";
 import sequelize from "./sequelize";
 
 class Hotel extends Model<InferAttributes<Hotel>, InferCreationAttributes<Hotel>> {
@@ -33,24 +33,28 @@ Hotel.init({
     },
     rating: {
         type: "FLOAT",
+        field: "ratings",
         defaultValue: null
     },
     ratingCount: {
         type: "INTEGER",
+        field: "rating_count",
         defaultValue: null,
     },
     createdAt: {
         type: "DATE",
+        field: "createdAt",
         defaultValue: new Date(),
     },
     updatedAt: {
         type: "DATE",
+        field: "updatedAt",
         defaultValue: new Date(),
     }
 }, {
     tableName: "hotels",
     sequelize: sequelize,
-    underscored: true,
+    underscored: false,
     timestamps: true
 });
 export default Hotel;

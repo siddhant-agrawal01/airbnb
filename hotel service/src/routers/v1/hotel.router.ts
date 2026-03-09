@@ -1,4 +1,3 @@
-import { get } from "http";
 import { createHotelHandler, getHotelByIdHandler } from "../../controllers/hotel.controller";
 import express from 'express'
 import { validateRequestBody } from "../../validators";
