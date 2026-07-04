@@ -1,4 +1,4 @@
-import { Prisma } from "../generated/prisma";
+import { Prisma, IdempotencyKey } from "../generated/prisma/client";
 import { validate as isValidUUID } from "uuid";
 
 import { BadRequestError, NotFoundError } from "../utils/errors/app.error";
